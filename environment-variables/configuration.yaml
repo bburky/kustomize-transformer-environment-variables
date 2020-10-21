@@ -1,0 +1,9 @@
+varReference:
+- path: spec/source/path
+  kind: Application
+- path: spec/source/targetRevision
+  kind: Application
+# Add additional entries into `varReference` if you would like substitution to occur anywhere else.
+
+# Default varReference list from Kustomize:
+# https://github.com/kubernetes-sigs/kustomize/blob/master/api/konfig/builtinpluginconsts/varreference.go

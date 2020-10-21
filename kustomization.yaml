@@ -1,0 +1,8 @@
+namespace: argo-cd
+
+bases:
+- environment-variables/
+
+resources:
+- hello-world.yaml
+# List other apps of your app of apps here

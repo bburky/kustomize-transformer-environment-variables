@@ -1,0 +1,10 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-world
+spec:
+  source:
+    path: apps/hello-world/$(ENVIRONMENT)/
+    targetRevision: $(ARGOCD_APP_SOURCE_TARGET_REVISION)
+  destination:
+    namespace: hello-world

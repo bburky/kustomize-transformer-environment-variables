@@ -23,6 +23,8 @@ ARGOCD_APP_SOURCE_TARGET_REVISION=dev-123-feature-foo ENVIRONMENT=dev kustomize 
 
 If this is run from inside Argo CD (perhaps in an app of apps pattern) `ARGOCD_APP_SOURCE_TARGET_REVISION` should be automatically populated from the [Argo CD build environment](https://argoproj.github.io/argo-cd/user-guide/build-environment/). If you need additional variables (like `ENVIRONMENT`) set in Argo CD, you would need to run Argo CD itself with the additional environment variables configured. It is also possible to specify literal values like `ENVIRONMENT=dev` in the [`environment.env` file](environment-variables/environment.env).
 
+Argo CD [does not appear to actually pass environment variables to Kustomize](https://github.com/argoproj/argo-cd/blob/d479d22de7e33dd5583bd51e4eb76163baf6318c/reposerver/repository/repository.go#L532-L538), so this probably doesn't work unless you run Kustomize via an [Argo CD config management plugin](https://argoproj.github.io/argo-cd/user-guide/config-management-plugins/).
+
 Note: This does leave around an extra `ConfigMap` in your deployed environment called `environment` (the name is configurable). This is an unavoidable side effect of misusing a configMapGenerator.
 
 Note 2: Missing environment variables will _not_ cause an error. Instead an empty string will be stored in the ConfigMap.

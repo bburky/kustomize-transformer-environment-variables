@@ -1,12 +1,14 @@
-generatorOptions:
-  disableNameSuffixHash: true
-
 # The `environment` ConfigMap contains all of the environment variables captured by Kustomize
 configMapGenerator:
 - name: environment
   envs:
-    - environment.env
+  - environment.env
 
+# Disabling the name suffix hash is required, or `vars` won't lookup the correct name
+generatorOptions:
+  disableNameSuffixHash: true
+
+# Extract the variables out of the ConfigMap and into Kustomize variables
 vars:
 - name: ENVIRONMENT
   objref:
@@ -22,7 +24,8 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.ARGOCD_APP_SOURCE_TARGET_REVISION
-# If more environment variables need to be captured into `vars:` list them here
+# Add any additional variables that are used
 
+# Add additional varReference entries if needed (custom CRDs, extra fields to substitute into, etc.)
 configurations:
 - configuration.yaml

@@ -5,4 +5,4 @@ bases:
 
 resources:
 - hello-world.yaml
-# List other apps of your app of apps here
+# List the other apps of your Argo CD app of apps here
